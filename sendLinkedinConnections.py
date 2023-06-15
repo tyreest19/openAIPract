@@ -65,8 +65,8 @@ def connectWithThirdConnection(driver, url, note, name):
     if driver.current_url != url:
         driver.get(url)
 
-    profile_page_loads = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "(//span[contains(text(),'More')])[3]")))
-    more_button = driver.find_element(By.XPATH, "(//span[contains(text(),'More')])[3]")
+    profile_page_loads = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "(//span[contains(text(),'More')])[2]")))
+    more_button = driver.find_element(By.XPATH, "(//span[contains(text(),'More')])[2]")
     more_button.click()
 
     try:
@@ -108,9 +108,9 @@ def alreadyConnectedOrconnectionPending(driver, url, note, name):
     except Exception as e:
         try:
             print("connection is not pending")
-            profile_page_loads = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'More')]")))
+            profile_page_loads = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "(//span[contains(text(),'More')])[2]")))
             print("more button is loading")
-            more_button = driver.find_element(By.XPATH, "(//span[contains(text(),'More')])[3]")
+            more_button = driver.find_element(By.XPATH, "(//span[contains(text(),'More')])[2]")
             more_button.click()
             print("clicked more button")
             loading_drop_down = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "(//span[@class='display-flex t-normal flex-1'][normalize-space()='Remove Connection'])[2]")))
@@ -170,7 +170,7 @@ if __name__ == '__main__':
         else:
             print("I am connected with this person or have a pending requests")
         # Keep the window open for three minutes
-        time.sleep(15)
+        time.sleep(7)
 
     # Close the browser window
     driver.quit()
